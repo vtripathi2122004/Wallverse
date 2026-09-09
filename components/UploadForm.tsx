@@ -40,8 +40,9 @@ export default function UploadForm() {
       setError('Please select an image file (JPEG, PNG, WebP, etc.)');
       return;
     }
-    if (selected.size > 15 * 1024 * 1024) {
-      setError('Image must be smaller than 15 MB');
+    // We can allow larger files now since we're bypassing Vercel's limit
+    if (selected.size > 25 * 1024 * 1024) {
+      setError('Image must be smaller than 25 MB');
       return;
     }
     setError(null);
@@ -67,38 +68,88 @@ export default function UploadForm() {
 
     setStatus('uploading');
     setError(null);
-    setProgress(0);
-
-    // Simulate progress while uploading
-    const interval = setInterval(() => {
-      setProgress((p) => (p < 85 ? p + Math.random() * 15 : p));
-    }, 300);
+    setProgress(10);
 
     try {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('category', category);
-      if (name.trim()) formData.append('name', name.trim());
-
-      const res = await fetch('/api/upload', {
+      // 1. Get upload signature from our backend
+      const signRes = await fetch('/api/sign-upload', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ category }),
       });
 
-      clearInterval(interval);
-      setProgress(100);
-
-      const json = await res.json();
-
-      if (!res.ok) {
-        throw new Error(json.error || 'Upload failed');
+      if (!signRes.ok) {
+        throw new Error('Failed to get upload signature');
       }
 
+      const { signature, timestamp, apiKey, cloudName, eager, folder } = await signRes.json();
+      setProgress(30);
+
+      // 2. Upload directly to Cloudinary
+      const cloudinaryFormData = new FormData();
+      cloudinaryFormData.append('file', file);
+      cloudinaryFormData.append('api_key', apiKey);
+      cloudinaryFormData.append('timestamp', timestamp);
+      cloudinaryFormData.append('signature', signature);
+      cloudinaryFormData.append('folder', folder);
+      cloudinaryFormData.append('eager', eager);
+
+      // We use XMLHttpRequest here to get real upload progress
+      const uploadResult = await new Promise<any>((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`);
+
+        xhr.upload.onprogress = (event) => {
+          if (event.lengthComputable) {
+            // Map 0-100% of Cloudinary upload to 30-80% of our progress bar
+            const percentComplete = (event.loaded / event.total) * 100;
+            setProgress(30 + percentComplete * 0.5);
+          }
+        };
+
+        xhr.onload = () => {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            resolve(JSON.parse(xhr.responseText));
+          } else {
+            try {
+              const err = JSON.parse(xhr.responseText);
+              reject(new Error(err.error?.message || 'Cloudinary upload failed'));
+            } catch {
+              reject(new Error('Cloudinary upload failed'));
+            }
+          }
+        };
+
+        xhr.onerror = () => reject(new Error('Network error during upload'));
+        xhr.send(cloudinaryFormData);
+      });
+
+      setProgress(85);
+
+      // 3. Save metadata to our backend
+      const saveRes = await fetch('/api/upload', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.trim() || null,
+          category,
+          publicId: uploadResult.public_id,
+          secureUrl: uploadResult.secure_url,
+        }),
+      });
+
+      if (!saveRes.ok) {
+        const saveErr = await saveRes.json();
+        throw new Error(saveErr.error || 'Failed to save wallpaper metadata');
+      }
+
+      setProgress(100);
       setStatus('success');
+      
       // Redirect to gallery after short delay
       setTimeout(() => router.push('/'), 1500);
     } catch (err: unknown) {
-      clearInterval(interval);
+      console.error(err);
       setStatus('error');
       setError(err instanceof Error ? err.message : 'Something went wrong');
     }
@@ -175,7 +226,7 @@ export default function UploadForm() {
               </div>
               <div className="text-center">
                 <p className="text-[var(--text)] text-sm font-medium">Drop your photo here</p>
-                <p className="text-[var(--text-muted)] text-xs mt-1">or click to browse · JPEG, PNG, WebP · max 15 MB</p>
+                <p className="text-[var(--text-muted)] text-xs mt-1">or click to browse · JPEG, PNG, WebP · max 25 MB</p>
               </div>
             </div>
           )}
