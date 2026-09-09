@@ -39,7 +39,7 @@ export default function Lightbox({ wallpaper, onClose }: LightboxProps) {
   if (!wallpaper) return null;
 
   const url = getImageUrl(wallpaper.r2_key);
-  const encodedKey = Buffer.from(wallpaper.r2_key).toString('base64url');
+  const encodedKey = btoa(wallpaper.r2_key).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
   const downloadUrl = `/api/download/${encodedKey}`;
   const filename = `${wallpaper.name || wallpaper.category}-wallpaper.jpg`;
 
