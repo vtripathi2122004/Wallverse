@@ -4,13 +4,13 @@ import Footer from '@/components/Footer';
 import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
-  title: 'WallVerse — Share & Download Stunning Wallpapers',
+  title: 'WallVerse — Stunning Wallpapers by Varun Tripathi',
   description:
-    'A private gallery where friends upload and share beautiful self-clicked wallpapers, perfectly formatted for desktop and mobile.',
-  keywords: ['wallpapers', 'gallery', 'photos', 'desktop', 'mobile', 'download'],
+    'An exclusive collection of stunning wallpapers, masterfully captured and meticulously edited by Varun Tripathi. Perfectly sized for desktop and mobile.',
+  keywords: ['wallpapers', 'gallery', 'photos', 'desktop', 'mobile', 'download', 'Varun Tripathi', 'photography'],
   openGraph: {
     title: 'WallVerse',
-    description: 'Share and download stunning wallpapers with friends on WallVerse.',
+    description: 'An exclusive collection of stunning wallpapers by Varun Tripathi.',
     type: 'website',
   },
 };

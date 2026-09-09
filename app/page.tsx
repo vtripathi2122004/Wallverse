@@ -41,7 +41,7 @@ export default async function HomePage() {
               The Gallery
             </h1>
             <p className="text-[var(--text-muted)] mt-2 max-w-md">
-              Browse and download stunning wallpapers shared by your friends, perfectly sized for every screen.
+              Discover an exclusive collection of stunning wallpapers, masterfully captured and meticulously edited by Varun Tripathi. Perfectly sized for every screen.
             </p>
           </div>
           <Link
