@@ -79,7 +79,7 @@ export default function Gallery({ wallpapers }: GalleryProps) {
                   {desktopWallpapers.length}
                 </span>
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 {desktopWallpapers.map((w) => (
                   <ImageCard key={w.id} wallpaper={w} onClick={setSelected} />
                 ))}
@@ -94,7 +94,7 @@ export default function Gallery({ wallpapers }: GalleryProps) {
                   {mobileWallpapers.length}
                 </span>
               </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
                 {mobileWallpapers.map((w) => (
                   <ImageCard key={w.id} wallpaper={w} onClick={setSelected} />
                 ))}
@@ -106,12 +106,11 @@ export default function Gallery({ wallpapers }: GalleryProps) {
 
       {/* Single-category filtered view */}
       {filter !== 'all' && filtered.length > 0 && (
-        <div
-          className={
-            filter === 'desktop'
-              ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'
-              : 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4'
-          }
+        <div className={`grid gap-6 sm:gap-8 transition-all duration-500
+          ${filter === 'mobile'
+            ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
+            : 'grid-cols-1 md:grid-cols-2'
+          }`}
         >
           {filtered.map((w) => (
             <ImageCard key={w.id} wallpaper={w} onClick={setSelected} />

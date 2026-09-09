@@ -75,18 +75,6 @@ export default async function HomePage() {
         {/* Gallery */}
         <Gallery wallpapers={wallpapers} />
       </main>
-
-      {/* Footer */}
-      <footer className="border-t border-[var(--border)] mt-20 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between flex-wrap gap-4">
-          <p className="text-sm text-[var(--text-muted)]">
-            Built with ❤️ using Next.js, Cloudflare R2 & Supabase
-          </p>
-          <Link href="/upload" className="text-sm text-brand-400 hover:text-brand-300 transition-colors">
-            + Add your wallpaper
-          </Link>
-        </div>
-      </footer>
     </div>
   );
 }

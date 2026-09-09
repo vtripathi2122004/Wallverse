@@ -7,6 +7,20 @@
 
 @layer base {
   :root {
+    --bg: #ffffff;
+    --surface: #f8fafc;
+    --surface-2: #f1f5f9;
+    --border: #e2e8f0;
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --accent: #4c6ef5;
+    --accent-light: #6a8eff;
+    --accent-glow: rgba(76, 110, 245, 0.15);
+    --success: #16a34a;
+    --error: #dc2626;
+  }
+
+  .dark {
     --bg: #0a0b14;
     --surface: #12141f;
     --surface-2: #1a1d2e;
@@ -91,6 +105,6 @@
   }
 
   .tab-btn.active {
-    @apply bg-[var(--surface-2)] text-white border border-[var(--border)];
+    @apply bg-[var(--text)] text-[var(--bg)] border border-[var(--text)];
   }
 }
