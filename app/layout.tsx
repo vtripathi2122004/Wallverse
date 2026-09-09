@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   title: 'WallVerse — Stunning Wallpapers by Varun Tripathi',
@@ -33,6 +34,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
