@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Wallpaper Hub — Share & Download Stunning Wallpapers',
+  title: 'WallVerse — Share & Download Stunning Wallpapers',
   description:
     'A private gallery where friends upload and share beautiful self-clicked wallpapers, perfectly formatted for desktop and mobile.',
   keywords: ['wallpapers', 'gallery', 'photos', 'desktop', 'mobile', 'download'],
   openGraph: {
-    title: 'Wallpaper Hub',
-    description: 'Share and download stunning wallpapers with friends.',
+    title: 'WallVerse',
+    description: 'Share and download stunning wallpapers with friends on WallVerse.',
     type: 'website',
   },
 };

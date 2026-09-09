@@ -28,7 +28,7 @@ export async function uploadToCloudinary(
     const stream = cloudinary.uploader.upload_stream(
       {
         public_id: publicId,
-        folder: `wallpaper-hub/${folder}`,
+        folder: `wallverse/${folder}`,
         resource_type: 'image',
         overwrite: false,
         // Store the already-resized JPEG as-is (no further Cloudinary transforms)

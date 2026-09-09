@@ -1,6 +1,6 @@
-# 🖼️ Wallpaper Hub
+# 🖼️ WallVerse
 
-A private gallery where friends upload self-clicked photos, automatically formatted as wallpapers for desktop and mobile screens. Built with **Next.js 14**, **Cloudflare R2**, and **Supabase**.
+A private gallery where friends upload self-clicked photos, automatically formatted as wallpapers for desktop and mobile screens. Built with **Next.js 14**, **Cloudinary**, and **Supabase**.
 
 ---
 
@@ -21,7 +21,7 @@ A private gallery where friends upload self-clicked photos, automatically format
 |---|---|
 | Frontend + Backend | Next.js 14 (App Router, TypeScript) |
 | Image Resizing | `sharp` (server-side, Node.js runtime) |
-| File Storage | Cloudflare R2 (S3-compatible, generous free tier) |
+| File Storage | Cloudinary (images, 25 GB free) |
 | Database | Supabase PostgreSQL (metadata only) |
 | Styling | Tailwind CSS |
 | Deployment | Vercel |
@@ -34,7 +34,7 @@ A private gallery where friends upload self-clicked photos, automatically format
 
 ```bash
 git clone <your-repo-url>
-cd WallpaperHub
+cd WallVerse
 npm install
 ```
 
@@ -68,7 +68,7 @@ create index if not exists wallpapers_created_idx on wallpapers (created_at desc
 
 1. Log in to [Cloudflare Dashboard](https://dash.cloudflare.com)
 2. Navigate to **R2 Object Storage** → **Create bucket**
-   - Name it something like `wallpaper-hub`
+   - Name it something like `wallverse`
 3. **Enable public access** on the bucket:
    - Bucket → **Settings** → **Public Access** → Allow
    - Note the public bucket URL (e.g., `https://pub-XXXXX.r2.dev`)

@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import UploadForm from '@/components/UploadForm';
 
 export const metadata: Metadata = {
-  title: 'Upload Wallpaper — Wallpaper Hub',
+  title: 'Upload Wallpaper — WallVerse',
   description: 'Upload your self-clicked photos as desktop or mobile wallpapers to share with friends.',
 };
 

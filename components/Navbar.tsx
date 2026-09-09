@@ -23,7 +23,7 @@ export default function Navbar() {
               </svg>
             </div>
             <span className="font-bold text-lg tracking-tight text-[var(--text)] group-hover:text-white transition-colors">
-              Wallpaper Hub
+              WallVerse
             </span>
           </Link>
 
