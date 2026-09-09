@@ -104,8 +104,8 @@ export default function Lightbox({ wallpaper, onClose }: LightboxProps) {
 
         {/* Image */}
         <div
-          className={`relative mx-auto overflow-hidden rounded-2xl border border-white/10 shadow-2xl
-            ${isPortrait ? 'h-[65vh] max-w-[calc(65vh*9/16)]' : 'w-full max-h-[60vh]'}`}
+          className={`relative mx-auto overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/50
+            ${isPortrait ? 'h-[75vh] w-[calc(75vh*9/16)]' : 'w-full aspect-[16/9]'}`}
         >
           {url && (
             <Image

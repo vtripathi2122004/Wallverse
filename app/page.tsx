@@ -35,24 +35,35 @@ export default async function HomePage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Hero header */}
-        <div className="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <div className="mb-16 mt-8 flex flex-col items-start gap-6 max-w-2xl">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-              The Gallery
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tighter text-[var(--text)] leading-tight">
+              WallVerse
             </h1>
-            <p className="text-[var(--text-muted)] mt-2 max-w-md">
-              Discover an exclusive collection of stunning wallpapers, masterfully captured and meticulously edited by Varun Tripathi. Perfectly sized for every screen.
+            <p className="text-xl sm:text-2xl font-medium text-[var(--text-muted)] mt-4 tracking-tight leading-snug">
+              Discover an exclusive collection of stunning wallpapers, masterfully captured and meticulously edited by Varun Tripathi.
             </p>
           </div>
-          <Link
-            href="/upload"
-            className="btn-primary self-start sm:self-auto shrink-0"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-            </svg>
-            Add Wallpaper
-          </Link>
+          <div className="flex items-center gap-4 mt-2">
+            <Link
+              href="#gallery-section"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm bg-[var(--text)] text-[var(--bg)] hover:bg-[var(--text-muted)] hover:text-[var(--bg)] transition-colors active:scale-95"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 21l6.75-6.75 6.75 6.75M16.5 3.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+              </svg>
+              Browse wallpapers
+            </Link>
+            <Link
+              href="/upload"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm bg-[var(--surface-2)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--text-muted)] transition-colors active:scale-95"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+              Submit
+            </Link>
+          </div>
         </div>
 
         {/* Stats bar */}
@@ -72,8 +83,10 @@ export default async function HomePage() {
           </div>
         )}
 
-        {/* Gallery */}
-        <Gallery wallpapers={wallpapers} />
+        {/* Gallery Section */}
+        <div id="gallery-section" className="pt-4 scroll-mt-24">
+          <Gallery wallpapers={wallpapers} />
+        </div>
       </main>
     </div>
   );
