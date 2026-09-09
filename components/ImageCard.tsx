@@ -11,7 +11,7 @@ interface ImageCardProps {
 function getImageUrl(publicId: string): string {
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
   if (!cloudName) return '';
-  return `https://res.cloudinary.com/${cloudName}/image/upload/${publicId}`;
+  return `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_auto/${encodeURI(publicId)}`;
 }
 
 export default function ImageCard({ wallpaper, onClick }: ImageCardProps) {
