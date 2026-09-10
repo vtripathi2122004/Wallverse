@@ -41,8 +41,6 @@ export default function Footer() {
             <div className="space-y-3 flex flex-col items-center md:items-start text-sm">
               <a 
                 href="https://oneis2one.framer.website" 
-                target="_blank" 
-                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-[var(--text-muted)] hover:text-indigo-400 transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -51,9 +49,7 @@ export default function Footer() {
                 Portfolio Website
               </a>
               <a 
-                href="https://oneis2one.framer.website"
-                target="_blank" 
-                rel="noopener noreferrer"
+                href="https://oneis2one.framer.website/contact"
                 className="inline-flex items-center gap-2 text-[var(--text-muted)] hover:text-indigo-400 transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -61,12 +57,7 @@ export default function Footer() {
                 </svg>
                 Contact Artist
               </a>
-              <Link href="/upload" className="inline-flex items-center gap-2 text-[var(--text-muted)] hover:text-indigo-400 transition-colors mt-2">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                </svg>
-                Upload Wallpaper
-              </Link>
+
             </div>
           </div>
         </div>
