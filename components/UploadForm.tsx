@@ -41,10 +41,6 @@ export default function UploadForm() {
       return;
     }
     // We can allow larger files now since we're bypassing Vercel's limit
-    if (selected.size > 25 * 1024 * 1024) {
-      setError('Image must be smaller than 25 MB');
-      return;
-    }
     setError(null);
     setFile(selected);
     const reader = new FileReader();
@@ -226,7 +222,7 @@ export default function UploadForm() {
               </div>
               <div className="text-center">
                 <p className="text-[var(--text)] text-sm font-medium">Drop your photo here</p>
-                <p className="text-[var(--text-muted)] text-xs mt-1">or click to browse · JPEG, PNG, WebP · max 25 MB</p>
+                <p className="text-[var(--text-muted)] text-xs mt-1">or click to browse · JPEG, PNG, WebP</p>
               </div>
             </div>
           )}
